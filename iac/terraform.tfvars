@@ -1,0 +1,5 @@
+environment     = "sandbox"
+aws_region      = "eu-north-1"
+account_id      = "711499641873"
+name            = "cv-digitalisering"
+s3_bucket_store = "sopra-digitalisering-cv-poc"
