@@ -1,7 +1,7 @@
 ############################################################################################################
 # # presigned_url Lambda IAM Role
 ############################################################################################################
-resource "aws_iam_role" "cv_digitalisering_presigned_url_lambda_api_role" {
+resource "aws_iam_role" "qrobjectlink_presigned_url_lambda_api_role" {
   name               = "${local.name}-presigned-url-api-handler"
   assume_role_policy = <<EOF
 {
@@ -21,8 +21,8 @@ EOF
 }
 
 # Attach Presigned URL policy to Presigned URL role
-resource "aws_iam_role_policy_attachment" "cv_digitalisering_attach_presigned_url_policy_to_role" {
-  role       = aws_iam_role.cv_digitalisering_presigned_url_lambda_api_role.name
+resource "aws_iam_role_policy_attachment" "qrobjectlink_attach_presigned_url_policy_to_role" {
+  role       = aws_iam_role.qrobjectlink_presigned_url_lambda_api_role.name
   policy_arn = aws_iam_policy.default_lambda_api_policy.arn
 }
 
@@ -46,8 +46,8 @@ resource "aws_iam_policy" "default_lambda_api_policy" {
         ],
         Effect = "Allow",
         Resource = [
-          "${aws_s3_bucket.cv_digitalisering_s3.arn}",
-          "${aws_s3_bucket.cv_digitalisering_s3.arn}/*"
+          "${aws_s3_bucket.qrobjectlink_s3.arn}",
+          "${aws_s3_bucket.qrobjectlink_s3.arn}/*"
         ]
       },
       {
@@ -80,7 +80,7 @@ resource "aws_iam_policy" "default_lambda_api_policy" {
   tags = local.tags
 
   depends_on = [
-    aws_s3_bucket.cv_digitalisering_s3
+    aws_s3_bucket.qrobjectlink_s3
   ]
 }
 
@@ -89,7 +89,7 @@ resource "aws_iam_policy" "default_lambda_api_policy" {
 ############################################################################################################
 
 # qr_code Lambda IAM Role
-resource "aws_iam_role" "cv_digitalisering_qr_code_lambda_api_role" {
+resource "aws_iam_role" "qrobjectlink_qr_code_lambda_api_role" {
   name               = "${local.name}-qr-code-api-handler"
   assume_role_policy = <<EOF
 {
@@ -109,7 +109,7 @@ EOF
 }
 
 # Attach QR Code Generator policy to QR Code Generator role
-resource "aws_iam_role_policy_attachment" "cv_digitalisering_attach_qr_code_policy_to_role" {
-  role       = aws_iam_role.cv_digitalisering_qr_code_lambda_api_role.name
+resource "aws_iam_role_policy_attachment" "qrobjectlink_attach_qr_code_policy_to_role" {
+  role       = aws_iam_role.qrobjectlink_qr_code_lambda_api_role.name
   policy_arn = aws_iam_policy.default_lambda_api_policy.arn
 }

@@ -43,3 +43,9 @@ variable "s3_bucket_store" {
   type        = string
   description = "S3 bucket storage to store uploaded objects"
 }
+
+variable "cognito_auth_flows" {
+  type        = list(string)
+  description = "List of Cognito authentication flows"
+  default     = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_PASSWORD_AUTH"]
+}
